@@ -1,8 +1,14 @@
 /*******************************************************************************
 /* Assignment 2 CPT212
 /* What the program do: Apply basic graph functions to a directed weighted graph.
-/* Programmer Name: HANA SHAH BINTI FAIZAL SHAH
-/* Programmer Matric #: 153583
+/* Programmer Name #1: NURUL IFFAH BINTI MOHD ZUKHI
+/* Programmer Matric #1: 151183
+/* Programmer Name #2: HANA SHAH BINTI FAIZAL SHAH
+/* Programmer Matric #2: 153583
+/* Programmer Name #3: SYED MUHAMMAD HAIKAL BIN SYED HUSNI
+/* Programmer Matric #3: 153086
+/* Programmer Name #4: JAZREEL OOI SUE CHING
+/* Programmer Matric #4: 150740
 /******************************************************************************/
 #include <iostream>
 #include <string>
@@ -71,7 +77,17 @@ int main()
 //Display Graph
 void graphDisplay(Graph g){
 	
-	cout<<"Directed weighted graph between five cities using Adjacency List\n";
+	cout << "\t=============================================\n";
+	cout << "\t|        Country       |         City        |\n ";
+	cout << "\t=============================================\n";
+	cout << "\t|     United States    |       Nashville     |\n";
+	cout << "\t|        France        |         Paris       |\n";
+	cout << "\t|        Zurich        |      Switzerland    |\n";
+	cout << "\t|        Porto         |        Portugal     |\n";
+	cout << "\t|        Cairo         |         Egypt       |\n"; 
+	cout << "\t=============================================\n";
+	
+	cout<<"Directed weighted graph between the five cities using adjacency list:\n";
 	
     g.displayGraph(g);
     
