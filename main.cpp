@@ -20,7 +20,10 @@
 using namespace std;
 
 void graphDisplay(Graph g);
+Graph detectCycle(Graph g);
 Graph addEdges(Graph g);
+
+const int vertices = 5;
 
 int main()
 {
@@ -59,6 +62,9 @@ int main()
 		{
 			case 1: 
 				graphDisplay(g);
+				break;
+			case 3:
+				g = detectCycle(g);
 				break;
 			case 5:
 				g.MST(g.adjList);
@@ -100,7 +106,48 @@ void graphDisplay(Graph g){
     
 }
 
+Graph detectCycle(Graph g){
+	//The source vertex and destination vertex
+	int u,v;
+	
+	//The path of the cycle
+	vector<int> cyclePath;
+	//The vertices of the graph represented by the five cities
+	string location[vertices] = {"Nashville","Paris","Zurich","Porto","Cairo"};
+	
+	//Detect cycle, the graph and path of the cycle is passed to the function
+	if(g.hasCycle(g,cyclePath)){ //If graph contains cycle
+        cout << "Graph contains cycle\n";
+        //Displays the path of the cycle
+        cout << "Cycle detected: ";
+        for (int i = cyclePath.size()-1; i >= 0; --i) {
+            cout << location[cyclePath[i]] << " "; //Still needs to be improved
+        }
+        cout<<endl<<endl;
+    }
+    else{ //If path does not contain cycle
+        cout << "Graph doesn't contain cycle\n";
+		//Generates random edge until a cycle is detected	
+        cout << "Generating random edge..."<<endl;
+        a:
+        u = rand()%5; //Generate random number from 0 to 4 for the source and destination vertex
+        v = rand()%5;
+        //Check if edge exists
+		if(g.edgeExists(g, u, v)){ //If edge exists, generate random numbers for the source and destination vertex again
+			cout << "This edge already exists! Generating random edge...\n";
+			goto a;
+		}
+		else{ //If edge does not exists, the edge is added to the graph
+			g.addEdge(g,u,v);
+        	detectCycle(g); //Function call to detect cycle
+		}
+	}
+	
+	return g; //Return the updated graph
+}
+
 Graph addEdges(Graph g){
+	//The source vertex and destination vertex
 	int u, v;
 	
 	cout << "\t=============================================\n";
@@ -113,20 +160,37 @@ Graph addEdges(Graph g){
 	cout << "\t|          4           |         Cairo       |\n"; 
 	cout << "\t=============================================\n";
 	
+	//User input
 	a:
 	cout << "Enter number of source vertex: ";
 	cin >> u;
+	//User input validation
+	while (u >= 0 && u < 5)
+	{
+		// An error message will appear if user enters incorrect input
+		cout << "\nERROR! Please enter the correct vertex number according to the table above: ";
+		cin >> u;
+	}
+	
+	//User input
 	cout << "Enter number of destination vertex: ";
 	cin >> v;
+	//User input validation
+	while (v >= 0 && v < 5)
+	{
+		// An error message will appear if user enters incorrect input
+		cout << "\nERROR! Please enter the correct vertex number according to the table above: ";
+		cin >> v;
+	}
 	
-	//check if edge exists
-	if(g.edgeExists(g, u, v)){
+	//Check if edge exists
+	if(g.edgeExists(g, u, v)){ //If edge exists, error message will appear and user will be asked to enter a different input
 		cout << "This edge already exists! Please enter a different input.\n";
 		goto a;
 	}
-	else{
+	else{ //If edge does not exist, the new edge will be added to the graph.
 		g.addEdge(g, u, v);
 		cout<< "The new edge has been added to the graph.\n\n";
 		}
-	return g;
+	return g; //Return the updated graph.
 }
