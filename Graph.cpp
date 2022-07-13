@@ -89,7 +89,15 @@ bool Graph::edgeExists(Graph &graph, int u, int v){
     return false;
 }
 
-/*
+void Graph::DFS(int n, unordered_set<int>& seen) {
+    seen.insert(n);
+    for (auto &edge : nodes[n]->edgesGoingOut) {
+        if (seen.find(edge.first) == seen.end()) {
+            DFS(edge.first, seen);
+        }
+    }
+}
+
 int Graph::findACycle(int vertex, unordered_map<int, Edge*>& vertexToMinEdge, unordered_set<int>& toRoot, unordered_set<int>& currentPath, unordered_set<Edge*>& cycleEdges, unordered_set<int>& cycleNodes) {
     currentPath.insert(vertex);
     
@@ -128,7 +136,7 @@ int Graph::findACycle(int vertex, unordered_map<int, Edge*>& vertexToMinEdge, un
     }
 }
 
-void Graph::MDST(int n) {
+void Graph::EdmondsAlgorithm(int n) {
     // Find the edge of minimum weight going into every vertex other than the root
     // with ties broken arbitrarily
     unordered_map<int, Edge*> vertexToMinEdge;
@@ -254,7 +262,7 @@ void Graph::MDST(int n) {
     }
 
     // Recurse on new updated graph with node v_C
-    MDST(n);
+    EdmondsAlgorithm(n);
     
     // Let (u, v_C) be the unique incoming edge to v_C in A'. 
     // This edge corresponds to an edge (u,v) in E with v in C. 
@@ -282,4 +290,80 @@ void Graph::MDST(int n) {
     }
 
     n--;
-}*/
+}
+
+void Graph::MST(vector<vector<Pair>> adjList){
+	int noVertices, noEdges;
+	int start, destination;
+	
+    cout << "Enter the number of vertices: ";
+    cin >> noVertices;
+    noEdges = noVertices-1;
+	cout << "Enter the starting vertex: ";
+	cin >> start;
+	cout << "Enter the destination vertex: ";
+	cin >> destination;
+	
+	// Initialize empty nodes
+    nodes.resize(noVertices);
+
+    for (int i = 0; i <= noVertices; i++) {
+        nodes[i] = new Node;
+    }
+
+    // Parse edge information. Do not add edge (u,v) with weight w if:
+    // 1. v = 0 since we assume 0 is our root node
+    // 2. u == v since this will never be in a minimum directed spanning tree
+    // 3. There is already an edge (u,v) with weight w' and w >= w'
+    for (int i = start; i <= destination - start; i++) {
+        int u, v, w;
+        u = i;
+        cout << u << endl;
+        for(auto it : adjList[i]){
+        	v = it.first;
+        	cout << v << endl;
+        	w = it.second;
+        	cout << w << endl;
+		}
+//        cout << "Enter the parent node: ";
+//        cin >> u;
+//        cout << "Enter the child node: ";
+//        cin >> v;
+//        cout << "Enter the weight: ";
+//        cin >> w;
+
+        if (v == 0 
+            || u == v
+            || (nodes[v]->edgesComingIn.find(u) != nodes[v]->edgesComingIn.end() 
+                && w >= nodes[v]->edgesComingIn[u]->weight)
+        ) {
+            continue;
+        }
+
+        Edge* edge = new Edge(u, v, w);
+        nodes[u]->edgesGoingOut[v] = edge;
+        nodes[v]->edgesComingIn[u] = edge;
+    }
+    
+    // Use DFS to determine if there is a path from the root vertex to all other vertices.
+    // If there is not, there is no spanning directed tree and thus no minimum directed
+    // spanning tree
+    unordered_set<int> seen;
+    DFS(0, seen);
+    if (seen.size() < noVertices) {
+        cout << "No solution!" << endl;
+    }
+
+    EdmondsAlgorithm(noEdges);
+
+    // Every vertex in the MDST (except for the root) has one and only edge going into it.
+    // Sum the weights of all the edges in the MDST by traversing the singular edge going
+    // into each vertex
+    int sum = 0;
+    for (int i = 1; i < noVertices; i++) {
+        Edge* edge = nodes[i]->edgeInMDST;
+        sum += edge->weight;
+        cout << edge->src << "->" << edge->dest << " " << edge->weight << endl;
+    }
+    cout << "Minimum spanning tree: " << sum << endl;
+}
