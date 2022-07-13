@@ -16,7 +16,7 @@ Graph::Graph(vector<Edge> const &edges, int n)
         {
             int src = edge.src;
             int dest = edge.dest;
-            float weight = edge.weight;
+            int weight = edge.weight;
  
             // insert at the end
             adjList[src].push_back(make_pair(dest, weight));
