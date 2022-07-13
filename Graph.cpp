@@ -35,7 +35,7 @@ void Graph::displayGraph(Graph const &graph)
     {   
 		// Function to print all neighboring vertices of a given vertex
 	    for (Pair v: graph.adjList[i]) {
-	        cout << location[i-1]<<" -> " << location[(v.first)-1] << ",(" << v.second << "KM) ";
+	        cout << location[i]<<" -> " << location[(v.first)] << ",(" << v.second << "KM) ";
 	    }
 	    cout << endl;
 	}
