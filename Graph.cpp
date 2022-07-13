@@ -20,9 +20,6 @@ Graph::Graph(vector<Edge> const &edges, int n)
  
             // insert at the end
             adjList[src].push_back(make_pair(dest, weight));
- 
-            // uncomment the following code for undirected graph
-            // adjList[dest].push_back(make_pair(src, weight));
         }
 }
 
