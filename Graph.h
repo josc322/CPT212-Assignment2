@@ -10,11 +10,10 @@ using namespace std;
 
 // Data structure to store a graph edge
 struct Edge {
-    int src, dest;
-    float weight;
+    int src, dest, weight;
 };
  
-typedef pair<int, float> Pair;
+typedef pair<int, int> Pair;
 
 class Graph{
 private:
