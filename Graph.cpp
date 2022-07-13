@@ -42,23 +42,57 @@ void Graph::displayGraph(Graph const &graph)
 	cout<<endl;
 }
 
-/*  
-void Graph::addEdge(vector <pair<int, int> > adjacencyList[], int u,
-                                     int v, float wt)
+void Graph::addEdge(Graph &graph, int u, int v)
 {
-    adjacencyList[u].push_back(make_pair(v, wt));
-    adjacencyList[v].push_back(make_pair(u, wt));
-}*/
-
-/*void Graph::DFS(int n, unordered_set<int>& seen) {
-    seen.insert(n);
-    for (auto &edge : nodes[n]->edgesGoingOut) {
-        if (seen.find(edge.first) == seen.end()) {
-            DFS(edge.first, seen);
-        }
-    }
+	int w;
+	
+	if((u==0 && v==1) || (u==1 && v==0)) //Nashville to Paris/Paris to Nashville
+		w = 7016;
+	else if((u==0 && v==2) || (u==2 && v==0)) //Nashville to Zurich/Zurich to Nashville
+		w = 7500;
+	else if((u==0 && v==3) || (u==3 && v==0)) //Nashville to Porto/Porto to Nashville
+		w = 8244;
+	else if((u==0 && v==4) || (u==4 && v==0)) //Nashville to Cairo/Cairo to Nashville
+		w = 10216;
+	else if((u==1 && v==2) || (u==2 && v==1)) //Paris to Zurich/Zurich to Paris
+		w = 488;
+	else if((u==1 && v==3) || (u==3 && v==1)) //Paris to Porto/Porto to Paris
+		w = 10254;
+	else if((u==1 && v==4) || (u==4 && v==1)) //Paris to Cairo/Cairo to Paris
+		w = 3210;
+	else if((u==2 && v==3) || (u==3 && v==2)) //Zurich to Porto/Porto to Zurich
+		w = 1526;
+	else if((u==2 && v==4) || (u==4 && v==2)) //Zurich to Cairo/Cairo to Zurich
+		w = 2736;
+	else if((u==3 && v==4) || (u==4 && v==3)) //Porto to Cairo/Cairo to Porto
+		w = 3771;
+	else // City to itself 
+		w = 0;
+	
+    graph.adjList[u].push_back(make_pair(v, w));
 }
 
+bool Graph::edgeExists(Graph &graph, int u, int v){
+
+    // if source and destination vertex are the same
+    if (u == v)
+      return true;
+ 
+    //Check the adjacent nodes of the vertex
+    for (Pair p: graph.adjList[u])
+    {
+        // If this adjacent node is the destination node, then
+        // return true
+        if (p.first == v)
+            return true;
+        else
+           	return false;
+        }
+    
+    return false;
+}
+
+/*
 int Graph::findACycle(int vertex, unordered_map<int, Edge*>& vertexToMinEdge, unordered_set<int>& toRoot, unordered_set<int>& currentPath, unordered_set<Edge*>& cycleEdges, unordered_set<int>& cycleNodes) {
     currentPath.insert(vertex);
     
