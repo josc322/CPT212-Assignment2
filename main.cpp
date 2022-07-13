@@ -20,6 +20,7 @@
 using namespace std;
 
 void graphDisplay(Graph g);
+Graph addEdges(Graph g);
 
 int main()
 {
@@ -59,6 +60,9 @@ int main()
 			case 1: 
 				graphDisplay(g);
 				break;
+			case 8:
+				g = addEdges(g);
+				break
 				//add more cases in between
 			case 10:
 				break;
@@ -82,13 +86,44 @@ void graphDisplay(Graph g){
 	cout << "\t=============================================\n";
 	cout << "\t|     United States    |       Nashville     |\n";
 	cout << "\t|        France        |         Paris       |\n";
-	cout << "\t|        Zurich        |      Switzerland    |\n";
-	cout << "\t|        Porto         |        Portugal     |\n";
-	cout << "\t|        Cairo         |         Egypt       |\n"; 
+	cout << "\t|      Switzerland     |        Zurich       |\n";
+	cout << "\t|       Portugal       |         Porto       |\n";
+	cout << "\t|        Egypt         |         Cairo       |\n"; 
 	cout << "\t=============================================\n";
 	
 	cout<<"Directed weighted graph between the five cities using adjacency list:\n";
 	
     g.displayGraph(g);
     
+}
+
+Graph addEdges(Graph g){
+	int u, v;
+	
+	cout << "\t=============================================\n";
+	cout << "\t|      Vertex No       |         City        |\n ";
+	cout << "\t=============================================\n";
+	cout << "\t|          0           |       Nashville     |\n";
+	cout << "\t|          1           |         Paris       |\n";
+	cout << "\t|          2           |        Zurich       |\n";
+	cout << "\t|          3           |         Porto       |\n";
+	cout << "\t|          4           |         Cairo       |\n"; 
+	cout << "\t=============================================\n";
+	
+	a:
+	cout << "Enter number of source vertex: ";
+	cin >> u;
+	cout << "Enter number of destination vertex: ";
+	cin >> v;
+	
+	//check if edge exists
+	if(g.edgeExists(g, u, v)){
+		cout << "This edge already exists! Please enter a different input.\n";
+		goto a;
+	}
+	else{
+		g.addEdge(g, u, v);
+		cout<< "The new edge has been added to the graph.\n\n";
+		}
+	return g;
 }
