@@ -19,7 +19,7 @@ struct Edge {
 };
 
 struct Node {
-	unordered_map<int, Edge*> edgesComingIn;
+    unordered_map<int, Edge*> edgesComingIn;
     unordered_map<int, Edge*> edgesGoingOut;
     Edge* edgeInMDST;
 };
