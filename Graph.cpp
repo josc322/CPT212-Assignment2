@@ -23,12 +23,14 @@ Graph::Graph(vector<Edge> const &edges, int n)
         }
 }
 
-void Graph::displayGraph(Graph const &graph)
+void Graph::displayGraph(Graph &graph)
 {
-	int n = 5;
-	string location[n] = {"Nashville","Paris","Zurich","Porto","Cairo"};
+	int V = 5; //number of vertices
+	
+	//The vertices of the graph represented by the five cities
+	string location[V] = {"Nashville","Paris","Zurich","Porto","Cairo"};
         
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < V; i++)
     {   
 		// Function to print all neighboring vertices of a given vertex
 	    for (Pair v: graph.adjList[i]) {
@@ -39,10 +41,67 @@ void Graph::displayGraph(Graph const &graph)
 	cout<<endl;
 }
 
+bool Graph::hasCycleUtil(Graph &graph, int a, bool visited[], bool *recStack, vector<int> &path)
+{	
+    if(visited[a] == false) //If current node is not visited
+    {
+        // Mark the current node as visited and part of recursion stack
+        visited[a] = true;
+        recStack[a] = true;
+  
+        // Recur for all the vertices adjacent to this vertex
+   			for (Pair v: graph.adjList[a]) {
+   				//If the adjacent node is not visited, a recursive call is made
+   				if ( !visited[(v.first)] && hasCycleUtil(graph, (v.first), visited, recStack, path) ){
+   					path.push_back(v.first); //the node that appears in the cycle is added into the vector
+                	return true;
+                }
+                //if the adjacent node is already visited, the node is checked in the recursion stack
+            	else if (recStack[v.first]){
+            		path.push_back(v.first); //the node that appears in the cycle is added into the vector
+                	return true;
+                }
+			   }
+        
+    }
+    recStack[a] = false;  //Remove the vertex from recursion stack
+    return false;
+}
+
+bool Graph::hasCycle(Graph &graph, vector<int> &path)
+{
+	//Depth-First-Search is used to find cycles in the graph
+	int V = 5; //Number of vertices
+	
+    // Mark all the vertices as not visited and not part of recursion stack
+    bool *visited = new bool[V];
+    bool *recStack = new bool[V];
+    
+
+    //Initially mark all nodes unvisited and not part of the recursion stack
+    for(int i = 0; i < V; i++)
+    {
+        visited[i] = false;
+        recStack[i] = false;
+    }
+    
+    // Call the recursive helper function to detect cycle in different DFS trees
+    for(int i = 0; i < V; i++)
+    	//Send the starting node and the arrays
+        if ( !visited[i] && hasCycleUtil(graph,i, visited, recStack, path)){
+        	return true; //Cycle detected
+		}
+
+    return false; //Cycle not detected
+}  
+
+
 void Graph::addEdge(Graph &graph, int u, int v)
 {
+	//Declare variable for weight
 	int w;
 	
+	//Distances between two cities
 	if((u==0 && v==1) || (u==1 && v==0)) //Nashville to Paris/Paris to Nashville
 		w = 7016;
 	else if((u==0 && v==2) || (u==2 && v==0)) //Nashville to Zurich/Zurich to Nashville
@@ -66,6 +125,7 @@ void Graph::addEdge(Graph &graph, int u, int v)
 	else // City to itself 
 		w = 0;
 	
+	//Add edges to the graph
     graph.adjList[u].push_back(make_pair(v, w));
 }
 
