@@ -26,7 +26,7 @@ int main()
 	// graph edges array.
     vector<Edge> edges = {
         // (x, y, w) -> edge from x to y with weight w
-        {1,5,10216.47},{2,3,488.05},{3,4,1526.20},{4,5,3770.79},{1,2,7016.11}
+        {0,4,10216.47},{1,2,488.05},{2,3,1526.20},{3,4,3770.79},{0,1,7016.11}
     };
     int vertices = 5;
     //Create graph
