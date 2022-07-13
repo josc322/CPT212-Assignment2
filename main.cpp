@@ -165,7 +165,7 @@ Graph addEdges(Graph g){
 	cout << "Enter number of source vertex: ";
 	cin >> u;
 	//User input validation
-	while (u >= 0 && u < 5)
+	while (u < 0 || u > 4)
 	{
 		// An error message will appear if user enters incorrect input
 		cout << "\nERROR! Please enter the correct vertex number according to the table above: ";
@@ -176,7 +176,7 @@ Graph addEdges(Graph g){
 	cout << "Enter number of destination vertex: ";
 	cin >> v;
 	//User input validation
-	while (v >= 0 && v < 5)
+	while (v < 0 || v > 4)
 	{
 		// An error message will appear if user enters incorrect input
 		cout << "\nERROR! Please enter the correct vertex number according to the table above: ";
