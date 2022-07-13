@@ -60,6 +60,9 @@ int main()
 			case 1: 
 				graphDisplay(g);
 				break;
+			case 5:
+				g.MST(g.adjList);
+				break;
 			case 8:
 				g = addEdges(g);
 				break
