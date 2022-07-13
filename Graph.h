@@ -8,7 +8,7 @@
 #include <utility>
 using namespace std;
 
-// Data structure to store a graph edge
+/// Data structure to store a graph edge
 struct Edge {
     int src, dest, weight;
 };
@@ -16,15 +16,15 @@ struct Edge {
 typedef pair<int, int> Pair;
 
 class Graph{
-private:
-    bool isCyclicUtil(int v, bool visited[], bool *rs);  // used by isCyclic()
+    bool isCyclicUtil(Graph &graph, int a, bool visited[], bool *rs);  // used by isCyclic()
 public:
     // a vector of vectors of Pairs to represent an adjacency list
     vector<vector<Pair>> adjList;
-    Graph(vector<Edge> const &edges, int n);   // Constructor
-    void addEdge(int u, int v, int w);   // to add an edge to graph
-    bool isCyclic();    // returns true if there is a cycle in this graph
-    void displayGraph(Graph const &graph);
+    Graph(vector<Edge> &edges, int n);   // Constructor
+    void addEdge(Graph &graph, int u, int v);   // to add an edge to graph
+    bool edgeExists(Graph &graph, int u, int v); //check if edge exists
+    bool isCyclic(Graph &graph);    // returns true if there is a cycle in this graph
+    void displayGraph(Graph &graph);
     ~Graph() { }
 };
 
