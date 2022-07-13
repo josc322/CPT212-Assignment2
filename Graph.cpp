@@ -354,16 +354,17 @@ void Graph::MST(vector<vector<Pair>> adjList){
         cout << "No solution!" << endl;
     }
 
-    EdmondsAlgorithm(noEdges);
+    EdmondsAlgorithm(noVertices);
 
     // Every vertex in the MDST (except for the root) has one and only edge going into it.
     // Sum the weights of all the edges in the MDST by traversing the singular edge going
     // into each vertex
     int sum = 0;
+    cout << "Minimum spanning tree: " << endl;
     for (int i = 1; i < noVertices; i++) {
         Edge* edge = nodes[i]->edgeInMDST;
         sum += edge->weight;
         cout << edge->src << "->" << edge->dest << " " << edge->weight << endl;
     }
-    cout << "Minimum spanning tree: " << sum << endl;
+    cout << "Minimum spanning tree total cost: " << sum << endl;
 }
