@@ -43,8 +43,8 @@ int main()
      cout << "3. Detect Cycle"<<endl;
      cout << "4. Check Strongest Path"<<endl;
      cout << "5. Check Minimum Spanning Tree"<<endl;
-     cout << "6. Add Edge Count"<<endl;
-     cout << "7. Transpose Graph"<<endl;
+     cout << "6. Display Number of Edges"<<endl;
+     cout << "7. Reverse Graph"<<endl;
      cout << "8. Add Edge"<<endl;
      cout << "9. Remove Edge"<<endl;
      cout << "10. Reset Graph" << endl;
