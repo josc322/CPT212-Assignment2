@@ -245,5 +245,71 @@ bool Graph::isSC(Graph &graph)
     return true;
 }
 
+// A greedy algorithm used to find the minimum spanning tree
+void Graph::PrimsAlgorithm(int n, vector<vector<Pair>> adjList)
+{   
+    // Create a priority queue to store the vertices
+    priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
+ 
+ 	// The starting vertex is 0
+    int start = 0; 
+ 
+    // Create a vector for keys and initialize all the keys with infinite
+    vector<int> keys(n, INFINITY);
+ 
+    // Create a vector to store the parent array that will be used to store the MST
+    vector<int> parent(n, -1);
+ 
+    // Create a vector to keep track of vertices included in the MST
+    vector<bool> insideMST(n, false);
+ 
+    // Insert source itself in priority queue and initialize
+    // its key as 0.
+    // Insert the starting vertex in the priority queue and initialize the key as 0
+    pq.push(make_pair(0, start));
+    keys[start] = 0;
+ 
+    // Loop until the priority queue becomes empty
+    while (!pq.empty())
+    {
+        // The first vertex in pair is the minimum key vertex.
+        // Extract the key from the priority queue.
+        // The vertex label is stored in second of the pair
+        int u = pq.top().second;
+        pq.pop();
+         
+        // The vertex with the least key value will always processed first.
+        // Ignore the others.
+        if(insideMST[u] == true){
+            continue;
+        }
+       
+        // Include the vertex in MST
+        insideMST[u] = true;  
+        
+        // For loop
+        for (auto it = adjList[u].begin(); it != adjList[u].end(); it++)
+        {
+            // Get vertex label and weight of current adjacent vertex of u.
+            int v = (*it).first;
+            int weight = (*it).second;
+ 
+            //  If v is not in MST and weight of (u,v), then it is smaller than current key of v
+            if (insideMST[v] == false && keys[v] > weight)
+            {
+                // Update the key value of v
+                keys[v] = weight;
+                pq.push(make_pair(keys[v], v));
+                parent[v] = u;
+            }
+        }
+    }
+ 
+ 	cout << "Minimum Spanning Tree:\n";
+    // Print the edges in the MST 
+    for (int i = 1; i < n; ++i)
+    	cout << parent[i] << "->" << i << endl;
+}
+
 
 
