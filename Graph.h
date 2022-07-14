@@ -27,8 +27,6 @@ public:
     bool hasCycle(Graph &graph, vector<int> &path);    // returns true if there is a cycle in this graph
     void displayGraph(Graph &graph);
     void countEdges(Graph const &graph); // count the number of edges in the graph
-    void clearGraph(vector<vector<Pair>> adjList, int n); // clear the graph
-    void resetGraph(vector<vector<Pair>> adjList, vector<Edge> edges, int n); // reset the graph back to default graph
     bool isSC(Graph &graph); //returns true if there are strong connection between graph
     void getReverse(Graph &graph); //for bool isSC
     void PrimsAlgorithm(int n, vector<vector<Pair>> adjList); // Find the MST of the graph
