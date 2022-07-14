@@ -28,6 +28,7 @@ typedef pair<int, int> Pair;
 
 class Graph{
     bool hasCycleUtil(Graph &graph, int a, bool visited[], bool *rs, vector<int> &path);  // used by hasCycle()
+    void DFSUtil(Graph &graph, int v, bool visited[]); //used by isSC() 
 public:
     // a vector of vectors of Pairs to represent an adjacency list
     vector<vector<Pair>> adjList;
@@ -44,6 +45,10 @@ public:
     void countEdges(Graph const &graph);
     void clearGraph(vector<vector<Pair>> adjList, int n);
 	void resetGraph(vector<vector<Pair>> adjList, vector<Edge> edges, int n);
+    bool isSC(Graph &graph); //returns true if there are strong connection between graph
+    void getReverse(Graph &graph); //for bool isSC
+	
+	
     ~Graph() { }
 };
 
