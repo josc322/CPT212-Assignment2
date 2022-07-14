@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <list>
-#include <utility>
 #include "Graph.h"
 using namespace std;
 
@@ -241,7 +240,7 @@ void Graph::PrimsAlgorithm(int n, vector<vector<Pair>> adjList)
     int start = 0; 
  
     // Create a vector for keys and initialize all the keys with infinite
-    vector<int> keys(n, INFINITY);
+    vector<int> keys(n, 1111111111);
  
     // Create a vector to store the parent array that will be used to store the MST
     vector<int> parent(n, -1);
