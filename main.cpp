@@ -22,6 +22,7 @@ using namespace std;
 void graphDisplay(Graph g);
 Graph detectCycle(Graph g);
 Graph addEdges(Graph g);
+Graph strongConnect(Graph g);
 
 const int vertices = 5;
 
@@ -63,6 +64,9 @@ int main()
 		{
 			case 1: 
 				graphDisplay(g);
+				break;
+			case 2:
+				strongConnect(g);
 				break;
 			case 3:
 				g = detectCycle(g);
@@ -208,3 +212,33 @@ Graph addEdges(Graph g){
 		}
 	return g; //Return the updated graph.
 }
+
+Graph strongConnect(Graph g)
+{
+	//The source vertex and destination vertex
+	int u,v;
+	
+	if(g.isSC(g))
+		cout << "Graph is strongly connected." << endl;
+	else
+	{
+		cout << "Graph is not strongly connected." << endl;
+		//Generates random edges until graph is strongly connected
+        cout << "Generating random edge..."<<endl;
+        a:
+        u = rand()%5; //Generate random number from 0 to 4 for the source and destination vertex
+        v = rand()%5;
+        //Check if edge exists
+		if(g.edgeExists(g, u, v)){ //If edge exists, generate random numbers for the source and destination vertex again
+			cout << "This edge already exists! Generating random edge..." << endl;
+			goto a;
+		}
+		else{ //If edge does not exists, the edge is added to the graph
+			g.addEdge(g,u,v);
+        	strongConnect(g); //Function call to check connectivity
+		}
+	}
+}
+
+
+
