@@ -69,6 +69,9 @@ int main()
 			case 5:
 				g.MST(g.adjList);
 				break;
+			case 6:
+				g.countEdges(g);
+				break;
 			case 8:
 				g = addEdges(g);
 				break
