@@ -23,6 +23,7 @@ void graphDisplay(Graph g);
 Graph detectCycle(Graph g);
 Graph addEdges(Graph g);
 Graph strongConnect(Graph g);
+void TransposeGraph();
 
 const int vertices = 5;
 
@@ -76,6 +77,9 @@ int main()
 				break;
 			case 6:
 				g.countEdges(g);
+				break;
+			case 7:
+				TransposeGraph();
 				break;
 			case 8:
 				g = addEdges(g);
@@ -240,5 +244,16 @@ Graph strongConnect(Graph g)
 	}
 }
 
-
+void TransposeGraph()
+{
+	// traverse the adjacency list of given graph
+    vector<Edge> revedges = {
+        // (y, x, w) -> edge from y to x with weight w
+        {4,0,10216},{2,1,488},{3,2,1526},{4,3,3771},{1,0,7016}
+    };
+    
+   int revertices = 5;
+   Graph g(revedges, revertices);
+   g.displayGraph(g);
+}
 
