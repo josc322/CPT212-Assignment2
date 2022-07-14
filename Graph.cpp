@@ -41,6 +41,20 @@ void Graph::displayGraph(Graph &graph)
 	cout<<endl;
 }
 
+void Graph::countEdges(Graph const &graph){
+	int result = 0;
+	int n = 5;
+
+	//Count the number of edges
+	for(int i = 0; i < n; i++){
+		for(auto it: graph.adjList[i]){
+			result++;
+		}
+	}
+	
+	cout << "Number of edges: " << result << endl;
+}
+
 bool Graph::hasCycleUtil(Graph &graph, int a, bool visited[], bool *recStack, vector<int> &path)
 {	
     if(visited[a] == false) //If current node is not visited
