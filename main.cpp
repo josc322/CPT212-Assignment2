@@ -47,7 +47,8 @@ int main()
      cout << "7. Transpose Graph"<<endl;
      cout << "8. Add Edge"<<endl;
      cout << "9. Remove Edge"<<endl;
-     cout << "10. Exit Program"<<endl;
+     cout << "10. Reset Graph" << endl;
+     cout << "11. Exit Program"<<endl;
      cout << "--------------------------------------------"<<endl;
      
     int choice=0;
@@ -77,12 +78,17 @@ int main()
 				break
 				//add more cases in between
 			case 10:
+				g.resetGraph(g.adjList, edges, vertices);
+				cout << "Graph have been reset to default graph.";
+				graphDisplay(g);
+				break;
+			case 11:
 				break;
 		default: //if choice not 1-10
 				cout << "Invalid Choice" << endl;
 				system("pause");
 		}
-	}while (choice != 10);
+	}while (choice != 11);
 	
 	cout << "\nEnd of program";
   
@@ -92,7 +98,7 @@ int main()
 
 //Display Graph
 void graphDisplay(Graph g){
-	
+	cout << endl;
 	cout << "\t=============================================\n";
 	cout << "\t|        Country       |         City        |\n ";
 	cout << "\t=============================================\n";
