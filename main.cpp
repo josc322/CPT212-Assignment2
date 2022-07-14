@@ -84,7 +84,7 @@ int main()
 				break;
 			case 8:
 				g = addEdges(g);
-				break
+				break;
 				//add more cases in between
 			case 10:
 				g.resetGraph(g.adjList, edges, vertices);
