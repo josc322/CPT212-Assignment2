@@ -87,9 +87,7 @@ int main()
 				break;
 				//add more cases in between
 			case 10:
-				g.resetGraph(g.adjList, edges, vertices);
-				cout << "Graph have been reset to default graph.";
-				graphDisplay(g);
+				//Sorry idk
 				break;
 			case 11:
 				break;
