@@ -456,3 +456,74 @@ void Graph::MST(vector<vector<Pair>> adjList){
     }
     cout << "Minimum spanning tree total cost: " << sum << endl;
 }
+
+// A recursive function to print DFS starting from v
+void Graph::DFSUtil(Graph &graph, int v, bool visited[])
+{
+    // Mark the current node as visited and print it
+    visited[v] = true;
+ 
+    // Recur for all the vertices adjacent to this vertex
+    vector<pair<int, int>>::iterator i;
+    for (i = adjList[v].begin(); i != adjList[v].end(); ++i)
+    {
+    if (!visited[(*i).first])
+	{DFSUtil(graph, (*i).first, visited);}
+    }
+}
+
+void Graph::getReverse(Graph &graph)
+{
+	int V=5;
+	
+	for(int v=0; v<V; v++){
+		for(Pair p: graph.adjList[v]){
+			graph.adjList[p.first].push_back(make_pair(v,p.second));
+		}
+	}
+	
+}
+
+bool Graph::isSC(Graph &graph)
+{
+    // St1p 1: Mark all the vertices as not visited
+    // (For first DFS)
+    int V = 5;
+    bool *visited = new bool [V];
+    for (int i = 0; i < V; i++)
+        visited[i] = false;
+ 
+    // Step 2: Do DFS traversal starting from first vertex.
+    DFSUtil(graph, 0, visited);
+ 
+     // If DFS traversal doesn’t visit all vertices,
+     // then return false.
+    for (int i = 0; i < V; i++)
+        if (visited[i] == false)
+             return false;
+ 
+   // Step 3: Create a reversed graph
+    Graph:getReverse(graph);
+    
+ 
+    // Step 4: Mark all the vertices as not visited
+    // (For second DFS)
+    for(int i = 0; i < V; i++)
+        visited[i] = false;
+ 
+    // Step 5: Do DFS for reversed graph starting from
+    // first vertex. Starting Vertex must be same starting
+    // point of first DFS
+    getReverse:DFSUtil(graph, 0, visited);
+ 
+    // If all vertices are not visited in second DFS, then
+    // return false
+    for (int i = 0; i < V; i++)
+        if (visited[i] == false)
+             return false;
+ 
+    return true;
+}
+
+
+
