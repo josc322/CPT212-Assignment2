@@ -42,6 +42,8 @@ public:
     void DFS(int n, unordered_set<int>& seen);
     void MST(vector<vector<Pair>> adjList);
     void countEdges(Graph const &graph);
+    void clearGraph(vector<vector<Pair>> adjList, int n);
+	void resetGraph(vector<vector<Pair>> adjList, vector<Edge> edges, int n);
     ~Graph() { }
 };
 
