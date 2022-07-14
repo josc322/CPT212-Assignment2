@@ -163,6 +163,20 @@ bool Graph::edgeExists(Graph &graph, int u, int v){
     return false;
 }
 
+void Graph::clearGraph(vector<vector<Pair>> adjList, int n)
+{
+	for(int i = 0; i < n; i++){
+		for(auto it : adjList[i]){
+			adjList[i].clear();
+		}
+	}
+}
+
+void Graph::resetGraph(vector<vector<Pair>> adjList, vector<Edge> edges, int n){
+	clearGraph(adjList, n);
+	Graph(edges, n);
+}
+
 void Graph::DFS(int n, unordered_set<int>& seen) {
     seen.insert(n);
     for (auto &edge : nodes[n]->edgesGoingOut) {
