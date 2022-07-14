@@ -38,9 +38,10 @@ public:
     bool hasCycle(Graph &graph, vector<int> &path);    // returns true if there is a cycle in this graph
     void displayGraph(Graph &graph);
     void EdmondsAlgorithm(int n);
-	int findACycle(int vertex, unordered_map<int, Edge*>& vertexToMinEdge, unordered_set<int>& toRoot, unordered_set<int>& currentPath, unordered_set<Edge*>& cycleEdges, unordered_set<int>& cycleNodes);
-	void DFS(int n, unordered_set<int>& seen);
-	void MST(vector<vector<Pair>> adjList);
+    int findACycle(int vertex, unordered_map<int, Edge*>& vertexToMinEdge, unordered_set<int>& toRoot, unordered_set<int>& currentPath, unordered_set<Edge*>& cycleEdges, unordered_set<int>& cycleNodes);
+    void DFS(int n, unordered_set<int>& seen);
+    void MST(vector<vector<Pair>> adjList);
+    void countEdges(Graph const &graph);
     ~Graph() { }
 };
 
