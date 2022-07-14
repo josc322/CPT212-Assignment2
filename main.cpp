@@ -24,6 +24,7 @@ Graph detectCycle(Graph g);
 Graph addEdges(Graph g);
 Graph strongConnect(Graph g);
 void TransposeGraph();
+void minimumST(Graph g);
 
 const int vertices = 5;
 
@@ -73,7 +74,7 @@ int main()
 				g = detectCycle(g);
 				break;
 			case 5:
-				g.MST(g.adjList);
+				minimumST(g);
 				break;
 			case 6:
 				g.countEdges(g);
@@ -257,3 +258,42 @@ void TransposeGraph()
    g.displayGraph(g);
 }
 
+// Function of Minimum Spanning Tree
+void minimumST(Graph g){
+	g.addEdge(g, 1, 0);
+	g.addEdge(g, 2, 1);
+	g.addEdge(g, 3, 2);
+	g.addEdge(g, 4, 3);
+	g.addEdge(g, 4, 0);
+	cout << "This is an undirected graph:\n";
+	graphDisplay(g);
+	
+	// User's input for the number of edges
+    int n;
+    
+    // Display message
+    cout << "Enter the number of edges you want to generate a Minimum Spanning Tree: \n";
+    cin >> n;
+    if(n != 5){
+    	cout << "You cannot find a MST with this number entered!\n";
+    	cout << "Generating random edges right now...\n";
+    	
+    	int u, v;
+    	
+    	//Generate random number from 0 to 4 for the source and destination vertex
+    	a:
+    	u = rand()%5; 
+        v = rand()%5;
+        
+        if(g.edgeExists(g, u, v)){ //If edge exists, generate random numbers for the source and destination vertex again
+			cout << "This edge already exists!\nGenerating random edge..." << endl;
+			goto a;
+		}
+		else{ //If edge does not exists, the edge is added to the graph
+			g.addEdge(g,u,v);
+			g.PrimsAlgorithm(vertices, g.adjList);
+		}
+	} else {
+		g.PrimsAlgorithm(vertices, g.adjList);
+	}	
+}
