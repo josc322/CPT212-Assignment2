@@ -163,20 +163,6 @@ bool Graph::edgeExists(Graph &graph, int u, int v){
     return false;
 }
 
-void Graph::clearGraph(vector<vector<Pair>> adjList, int n)
-{
-	for(int i = 0; i < n; i++){
-		for(auto it : adjList[i]){
-			adjList[i].clear();
-		}
-	}
-}
-
-void Graph::resetGraph(vector<vector<Pair>> adjList, vector<Edge> edges, int n){
-	clearGraph(adjList, n);
-	Graph(edges, n);
-}
-
 // A recursive function to print DFS starting from v
 void Graph::DFSUtil(Graph &graph, int v, bool visited[])
 {
