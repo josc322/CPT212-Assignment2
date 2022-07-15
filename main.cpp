@@ -23,6 +23,7 @@ void graphDisplay(Graph g);
 Graph detectCycle(Graph g);
 Graph addEdges(Graph g);
 Graph strongConnect(Graph g);
+Graph shortestPath(Graph g);
 void TransposeGraph();
 void minimumST(Graph g);
 Graph resetGraph(Graph g, vector<Edge> edges, int n);
@@ -45,7 +46,7 @@ int main()
      cout << "1. Display Graph"<<endl;
      cout << "2. Check Connectivity"<<endl;
      cout << "3. Detect Cycle"<<endl;
-     cout << "4. Check Strongest Path"<<endl;
+     cout << "4. Check shortest Path"<<endl;
      cout << "5. Check Minimum Spanning Tree"<<endl;
      cout << "6. Display Number of Edges"<<endl;
      cout << "7. Reverse Graph"<<endl;
@@ -73,6 +74,9 @@ int main()
 				break;
 			case 3:
 				g = detectCycle(g);
+				break;
+			case 4:
+				shortestPath(g);
 				break;
 			case 5:
 				minimumST(g);
