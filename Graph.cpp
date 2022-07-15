@@ -296,5 +296,12 @@ void Graph::PrimsAlgorithm(int n, vector<vector<Pair>> adjList)
     	cout << parent[i] << "->" << i << endl;
 }
 
+// Function clearGraph to clear the graph
+void Graph::clearGraph(Graph &g){
+	for(auto it : g.adjList){
+		it.clear();
+	}
+	g.adjList.clear();
+}
 
 
