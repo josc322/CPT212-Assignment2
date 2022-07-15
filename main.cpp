@@ -315,7 +315,7 @@ void TransposeGraph()
 
 // Function of Minimum Spanning Tree
 void minimumST(Graph g){
-	// Add edges to the graph to make it become undirected
+	// Add edges to the graph to make it become undirected graph
 	g.addEdge(g, 1, 0);
 	g.addEdge(g, 2, 1);
 	g.addEdge(g, 3, 2);
@@ -323,19 +323,20 @@ void minimumST(Graph g){
 	g.addEdge(g, 4, 0);
 	cout << "This is an undirected graph:\n";
 	
-	// Display graph
+	// Display the current graph
 	graphDisplay(g);
 	
 	// User's input for the number of edges
     int n;
     
     // Display message
-    cout << "Enter the number of edges you want to generate a Minimum Spanning Tree: \n";
+    cout << "Enter the number of edges to generate a Minimum Spanning Tree: \n";
     cin >> n;
     if(n != 4){
-    	cout << "You cannot find a MST with this number entered!\n";
-    	cout << "Generating random edges right now...\n";
+    	cout << "You cannot find a MST with this number entered!\n\n";
+    	cout << "Generating random edges right now...\n\n";
     	
+    	// Start vertex and end vertex
     	int u, v;
     	
     	//Generate random number from 0 to 4 for the source and destination vertex
@@ -344,14 +345,17 @@ void minimumST(Graph g){
         v = rand()%5;
         
         if(g.edgeExists(g, u, v)){ //If edge exists, generate random numbers for the source and destination vertex again
-			cout << "This edge already exists!\nGenerating random edge..." << endl;
+			cout << "This edge already exists!\n\nGenerating random edge..." << endl;
 			goto a;
 		}
 		else{ //If edge does not exists, the edge is added to the graph
 			g.addEdge(g,u,v);
+			
+			// Call the PrimsAlogrithm function
 			g.PrimsAlgorithm(vertices, g.adjList);
 		}
 	} else {
+		// Call the PrimsAlgorithm function
 		g.PrimsAlgorithm(vertices, g.adjList);
 	}	
 }
