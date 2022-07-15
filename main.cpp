@@ -25,7 +25,7 @@ Graph addEdges(Graph g);
 Graph removeEdges(Graph g);
 Graph strongConnect(Graph g);
 Graph shortestPath(Graph g);
-void TransposeGraph();
+void reverseGraph();
 void minimumST(Graph g);
 Graph resetGraph(Graph g, vector<Edge> edges, int n);
 
@@ -86,7 +86,7 @@ int main()
 				g.countEdges(g);
 				break;
 			case 7:
-				TransposeGraph();
+				reverseGraph();
 				break;
 			case 8:
 				g = addEdges(g);
@@ -298,9 +298,10 @@ Graph strongConnect(Graph g)
         	strongConnect(g); //Function call to check connectivity
 		}
 	}
+	return g;
 }
 
-void TransposeGraph()
+void reverseGraph()
 {
 	// traverse the adjacency list of given graph
     vector<Edge> revedges = {
