@@ -32,9 +32,7 @@ public:
     void getReverse(Graph &graph); //for bool isSC
     void PrimsAlgorithm(int n, vector<vector<Pair>> adjList); // Find the MST of the graph
     void clearGraph(Graph &g); // clear the graph
-	
-	
-    ~Graph() { } //Destructor
+    ~Graph(); //Destructor
 };
 
 #endif
