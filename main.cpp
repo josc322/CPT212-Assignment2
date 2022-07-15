@@ -22,6 +22,7 @@ using namespace std;
 void graphDisplay(Graph g);
 Graph detectCycle(Graph g);
 Graph addEdges(Graph g);
+Graph removeEdges(Graph g);
 Graph strongConnect(Graph g);
 Graph shortestPath(Graph g);
 void TransposeGraph();
@@ -89,6 +90,9 @@ int main()
 				break;
 			case 8:
 				g = addEdges(g);
+				break;
+			case 9:
+				g = removeEdges(g);
 				break;
 			case 10:
 				g = resetGraph(g, edges, vertices);
@@ -217,6 +221,55 @@ Graph addEdges(Graph g){
 	else{ //If edge does not exist, the new edge will be added to the graph.
 		g.addEdge(g, u, v);
 		cout<< "The new edge has been added to the graph.\n\n";
+		}
+	return g; //Return the updated graph.
+}
+
+Graph removeEdges(Graph g){
+	//The source vertex and destination vertex
+	int u, v;
+	
+	cout << "\t=============================================\n";
+	cout << "\t|      Vertex No       |         City        |\n ";
+	cout << "\t=============================================\n";
+	cout << "\t|          0           |       Nashville     |\n";
+	cout << "\t|          1           |         Paris       |\n";
+	cout << "\t|          2           |        Zurich       |\n";
+	cout << "\t|          3           |         Porto       |\n";
+	cout << "\t|          4           |         Cairo       |\n"; 
+	cout << "\t=============================================\n";
+	
+	//User input
+	a:
+	cout << "Enter number of source vertex: ";
+	cin >> u;
+	//User input validation
+	while (u < 0 || u > 4)
+	{
+		// An error message will appear if user enters incorrect input
+		cout << "\nERROR! Please enter the correct vertex number according to the table above: ";
+		cin >> u;
+	}
+	
+	//User input
+	cout << "Enter number of destination vertex: ";
+	cin >> v;
+	//User input validation
+	while (v < 0 || v > 4)
+	{
+		// An error message will appear if user enters incorrect input
+		cout << "\nERROR! Please enter the correct vertex number according to the table above: ";
+		cin >> v;
+	}
+	
+	//Check if edge exists
+	if(g.edgeExists(g, u, v)){ //If edge exists, the edge will be removed
+		g.removeEdge(g , u ,v);
+		cout<< "The edge has been removed from the graph.\n\n";
+	}
+	else{ //If edge exists, error message will appear and user will be asked to enter a different input
+		cout<< "The edge does not exist! Please enter a different input.\n";
+		goto a;
 		}
 	return g; //Return the updated graph.
 }
