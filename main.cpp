@@ -25,6 +25,7 @@ Graph addEdges(Graph g);
 Graph strongConnect(Graph g);
 void TransposeGraph();
 void minimumST(Graph g);
+Graph resetGraph(Graph g, vector<Edge> edges, int n);
 
 const int vertices = 5;
 
@@ -85,9 +86,9 @@ int main()
 			case 8:
 				g = addEdges(g);
 				break;
-				//add more cases in between
 			case 10:
-				//Sorry idk
+				g = resetGraph(g, edges, vertices);
+				graphDisplay(g);
 				break;
 			case 11:
 				break;
@@ -258,12 +259,15 @@ void TransposeGraph()
 
 // Function of Minimum Spanning Tree
 void minimumST(Graph g){
+	// Add edges to the graph to make it become undirected
 	g.addEdge(g, 1, 0);
 	g.addEdge(g, 2, 1);
 	g.addEdge(g, 3, 2);
 	g.addEdge(g, 4, 3);
 	g.addEdge(g, 4, 0);
 	cout << "This is an undirected graph:\n";
+	
+	// Display graph
 	graphDisplay(g);
 	
 	// User's input for the number of edges
@@ -294,4 +298,15 @@ void minimumST(Graph g){
 	} else {
 		g.PrimsAlgorithm(vertices, g.adjList);
 	}	
+}
+
+// Reset thee graph back to default mode
+Graph resetGraph(Graph g, vector<Edge> edges, int n){
+	// Call clearGraph function
+	g.clearGraph(g);
+	
+	// Initialize the graph
+	Graph graph(edges, n);
+	
+	return graph;
 }
