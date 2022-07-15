@@ -45,10 +45,10 @@ int main()
      cout << "Please choose the functions you want to do: "<<endl;
      cout << "--------------------------------------------"<<endl;
      cout << "1. Display Graph"<<endl;
-     cout << "2. Check Connectivity"<<endl;
+     cout << "2. Check Strong Connectivity"<<endl;
      cout << "3. Detect Cycle"<<endl;
-     cout << "4. Check shortest Path"<<endl;
-     cout << "5. Check Minimum Spanning Tree"<<endl;
+     cout << "4. Find Shortest Path"<<endl;
+     cout << "5. Generate Minimum Spanning Tree"<<endl;
      cout << "6. Display Number of Edges"<<endl;
      cout << "7. Reverse Graph"<<endl;
      cout << "8. Add Edge"<<endl;
