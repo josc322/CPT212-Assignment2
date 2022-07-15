@@ -356,13 +356,14 @@ void minimumST(Graph g){
 	}	
 }
 
-// Reset thee graph back to default mode
+// Reset the graph back to default mode
 Graph resetGraph(Graph g, vector<Edge> edges, int n){
 	// Call clearGraph function
 	g.clearGraph(g);
 	
 	// Initialize the graph
 	Graph graph(edges, n);
+	cout << "Graph has been reset. Displaying graph..\n\n";
 	
 	return graph;
 }
