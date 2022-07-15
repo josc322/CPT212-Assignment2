@@ -23,9 +23,10 @@ public:
     vector<vector<Pair>> adjList;
     Graph(vector<Edge> &edges, int n);   // Constructor
     void addEdge(Graph &graph, int u, int v);   // to add an edge to graph
+    void removeEdge(Graph &graph, int u, int v); //remove edge from graph
     bool edgeExists(Graph &graph, int u, int v); //check if edge exists
     bool hasCycle(Graph &graph, vector<int> &path);    // returns true if there is a cycle in this graph
-    void displayGraph(Graph &graph);
+    void displayGraph(Graph &graph); //display graph
     void countEdges(Graph const &graph); // count the number of edges in the graph
     bool isSC(Graph &graph); //returns true if there are strong connection between graph
     void getReverse(Graph &graph); //for bool isSC
@@ -33,7 +34,7 @@ public:
     void clearGraph(Graph &g); // clear the graph
 	
 	
-    ~Graph() { }
+    ~Graph() { } //Destructor
 };
 
 #endif
