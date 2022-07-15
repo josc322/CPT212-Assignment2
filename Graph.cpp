@@ -142,6 +142,20 @@ void Graph::addEdge(Graph &graph, int u, int v)
     graph.adjList[u].push_back(make_pair(v, w));
 }
 
+void Graph::removeEdge(Graph &graph, int u, int v)
+{	
+	for (int i = 0; i < 5; i++)
+    {   
+		//Delete edge from the graph
+	    for (Pair v: graph.adjList[i]) {
+	        if (v.first == u){
+	        	graph.adjList[u].erase(graph.adjList[u].begin() + i);
+	        	break;
+			}
+	    }
+	}
+}
+
 bool Graph::edgeExists(Graph &graph, int u, int v){
 
     // if source and destination vertex are the same
