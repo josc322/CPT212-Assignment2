@@ -146,13 +146,12 @@ Graph detectCycle(Graph g){
         //Displays the path of the cycle
         cout << "Cycle detected: ";
         for (int i = cyclePath.size()-1; i >= 0; --i) {
-             if (i==0){ //last node in the cycle
+            if (i==0){ //last node in the cycle
             	cout << location[cyclePath[i]];
-		}
-	     else
-	 	cout << location[cyclePath[i]] << "->";
-           }
-        }
+			}
+			else
+			 cout << location[cyclePath[i]] << "->";
+        	}
         cout<<endl<<endl;
     }
     else{ //If path does not contain cycle
