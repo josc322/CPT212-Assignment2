@@ -17,6 +17,7 @@
 #include <utility>
 #include <cstdlib>
 #include "Graph.h"
+#include "Graph2.h"
 using namespace std;
 
 void graphDisplay(Graph g);
@@ -24,7 +25,7 @@ Graph detectCycle(Graph g);
 Graph addEdges(Graph g);
 Graph removeEdges(Graph g);
 Graph strongConnect(Graph g);
-Graph shortestPath(Graph g);
+void shortestPath();
 void reverseGraph();
 void minimumST(Graph g);
 Graph resetGraph(Graph g, vector<Edge> edges, int n);
@@ -77,7 +78,7 @@ int main()
 				g = detectCycle(g);
 				break;
 			case 4:
-				shortestPath(g);
+				shortestPath();
 				break;
 			case 5:
 				minimumST(g);
@@ -224,6 +225,78 @@ Graph addEdges(Graph g){
 		cout<< "The new edge has been added to the graph.\n\n";
 		}
 	return g; //Return the updated graph.
+}
+
+void shortestPath(){
+		cout<<"Shortest Path Dijkstra "<<endl;
+		
+		int u,v;
+		int n = 5;
+		Graph2 g2(n);
+		int dist[n], prev[n];
+		
+		string City[n] = {"Nashville", "Paris", "Zurich", "Porto", "Cairo"};
+		
+		int pick1;
+		int pick2;
+		
+		int o=0;
+		int m=0;
+		
+		cout<<endl;
+		cout << "Pick starting city" << endl;
+		while (o<n){
+		cout << o <<") " << City[o] << endl;
+		o++;
+		}
+		cout << "Pick a number of the starting city : ";
+		cin >> pick1;
+		
+		while (o<m){
+		cout << m <<") " << City[m] << endl;
+		m++;
+		}
+		cout << "Pick a number of the ending city : ";
+		cin >> pick2;
+		
+		int start = pick1;
+		
+		g2.addEdge(0, 4, 10216.47); //Nashville to Cairo
+		g2.addEdge(1, 2, 488.05);  //Paris to Zurich
+		g2.addEdge(2, 3, 1526.20); //Zurich to Porto
+		g2.addEdge(3, 4, 3770.79); //Cairo to Porto
+		g2.addEdge(0, 1, 7016.11); //Nashville to Paris
+		
+		dijkstra(g2, dist, prev, start);
+		
+		cout<<endl;
+		for(int i = 0; i<n; i++)
+		  if(i != start)
+		     cout<<start<<" to "<<i<<", Distance: "<<dist[i]<<"KM"<<" Previous: "<<prev[i]<<" cities "<<endl;
+		
+		
+		for(int i = 0; i<n; i++)
+		  if(i != start)
+		  		if(i == pick2 && prev[i] != -1)
+		  			{
+		  			cout<<endl;
+		     		cout<<City[start]<<" to "<<City[i]<<", Distance: "<<dist[i]<<"KM "<<endl;
+		     		 int k=prev[i];
+		     		cout << "Previous city  : "<<City[k]<<endl;
+		     		//apa2=true
+		  			}
+		     	else if(i == pick2 && prev[i] == -1){
+		     		
+				 	cout<<endl;
+		     		cout << "There is no path"<<endl<<endl;
+		     		//apa2 = false while loop satu main
+		     		//tambah edge kat sini
+		     		cout<<"Generating random edge..."<<endl;
+		     		
+//		     		if(g.edgeExists(pick1,u, v)){
+//		     			cout<<"This edge already exists!";
+//					 }
+		     	}  
 }
 
 Graph removeEdges(Graph g){
