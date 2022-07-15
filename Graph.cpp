@@ -5,7 +5,7 @@
 #include "Graph.h"
 using namespace std;
 
-Graph::Graph(vector<Edge> const &edges, int n)
+Graph::Graph(vector<Edge> &edges, int n)
 {
         // resize the vector to hold `n` elements of type vector<Edge>
         adjList.resize(n);
