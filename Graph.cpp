@@ -22,6 +22,12 @@ Graph::Graph(vector<Edge> &edges, int n)
         }
 }
 
+Graph::~Graph(){
+	for(auto it : adjList){
+		it.clear();
+	}
+}
+
 void Graph::displayGraph(Graph &graph)
 {
 	int V = 5; //number of vertices
