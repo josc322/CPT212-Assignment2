@@ -304,10 +304,13 @@ void Graph::PrimsAlgorithm(int n, vector<vector<Pair>> adjList)
         }
     }
  
- 	cout << "Minimum Spanning Tree:\n";
+ 	cout << "\t=============================================\n";
+	cout << "\t|           Minimum Spanning Tree           |\n ";
+	cout << "\t=============================================\n";
     // Print the edges in the MST 
     for (int i = 1; i < n; ++i)
-    	cout << parent[i] << "->" << i << endl;
+    	cout << "\t\t\t     " << parent[i] << "->" << i << endl;
+    cout << endl;
 }
 
 // Function clearGraph to clear the graph
