@@ -276,7 +276,7 @@ void minimumST(Graph g){
     // Display message
     cout << "Enter the number of edges you want to generate a Minimum Spanning Tree: \n";
     cin >> n;
-    if(n != 5){
+    if(n != 4){
     	cout << "You cannot find a MST with this number entered!\n";
     	cout << "Generating random edges right now...\n";
     	
