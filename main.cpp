@@ -107,6 +107,8 @@ int main()
 	}while (choice != 11);
 	
 	cout << "\nEnd of program";
+	
+	g.~Graph(); //Destructor
   
     return 0;
 	
